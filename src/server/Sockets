@@ -1,0 +1,18 @@
+Two Kind of sockets:
+
+1. ServerSocket:
+special socket that resides only on the server's side.
+A.It binds to a specific port (on a specific IP address)
+B.listens to requests for incoming connections
+C.tries to accept them (In TCP - 3WAY Handshake)
+
+2. Socket (a.k.a Operational Socket/Client Socket)
+It is an abstraction of 2way data pipeline: the input stream and the outputstream
+In client-side:
+A.client creates a Socket using a specific IP address, port number and Transport protocol
+ (by default TCP)
+B. if a connection is accepted by the server, we can send and receive data using the socket
+In server-side:
+for every accepted connection (using ServerSocket), a Socket is created
+for each client
+
