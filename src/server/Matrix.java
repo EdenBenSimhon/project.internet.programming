@@ -6,7 +6,7 @@ import java.util.*;
 /*
 SOLID
 Open for extension/composition but closed for modification
-Prefer composition over extension
+Prefer composition to extension
  */
 public class Matrix implements Serializable {
     int[][] primitiveMatrix;
@@ -72,6 +72,19 @@ public class Matrix implements Serializable {
             extracted = primitiveMatrix[index.row][index.column-1];
             list.add(new Index(index.row,index.column-1));
         }catch (ArrayIndexOutOfBoundsException ignored){}
+        return list;
+    }
+    public Collection<Index> getAllOne(){
+        Collection<Index> list = new ArrayList<>();
+        int lengthRow = primitiveMatrix.length;
+        int lengthCol = primitiveMatrix[0].length;
+        for (int i = 0; i < lengthRow; i++) {
+            for (int j = 0; j < lengthCol; j++) {
+                if (primitiveMatrix[i][j] == 1) {
+                    list.add(new Index(i, j));
+                }
+            }
+        }
         return list;
     }
 

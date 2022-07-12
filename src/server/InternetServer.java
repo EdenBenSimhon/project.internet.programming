@@ -29,13 +29,14 @@ public class InternetServer {
             this.clientsPool =
                     new ThreadPoolExecutor(
                             10,15,200, TimeUnit.MILLISECONDS,
-                            new LinkedBlockingQueue<>());
+                            new LinkedBlockingQueue<>()); //all client
             try {
                 ServerSocket serverSocket = new ServerSocket(this.port,50);
                 while (!stopServer){
                     // listen + accept (phases 3+4), are done by accept method
-                     Socket clientToServerConnection = serverSocket.accept();
-                     Runnable specificClientHandling = ()->{
+
+                    Socket clientToServerConnection = serverSocket.accept();
+                    Runnable specificClientHandling = ()->{
                          System.out.println("Server: Handling a client in " + Thread.currentThread().getName() +
                                  " Thread");
                          try {

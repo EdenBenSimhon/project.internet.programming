@@ -4,6 +4,7 @@ import server.IHandler;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -40,6 +41,16 @@ public class MatrixHandler implements IHandler {
                 this.matrix.printMatrix();
                 break;
             }
+                case "find all ones":{
+                    if(this.matrix!=null) {
+                        List<Index> allIndexOneList =
+                                new ArrayList<>(this.matrix.getAllOne());
+                        System.out.println(allIndexOneList);
+                        objectOutputStream.writeObject(allIndexOneList);
+                    }
+                    break;
+
+                }
 
             case "get neighbors":{
                 this.sourceIndex = (Index)objectInputStream.readObject();

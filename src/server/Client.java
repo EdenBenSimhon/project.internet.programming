@@ -19,13 +19,19 @@ public class Client {
             ObjectInputStream fromServer = new ObjectInputStream(clientSocket.getInputStream());
 
             int[][] sourceArray = {
-                    {1,1,0},
-                    {0,1,1},
-                    {0,1,1}
+                    {1,0,0},
+                    {1,0,1},
+                    {1,1,1}
             };
 
             toServer.writeObject("matrix");
             toServer.writeObject(sourceArray);
+
+            toServer.writeObject("find all ones");
+
+            List<Index> allOne = new ArrayList<Index>((List<Index>)fromServer.readObject());
+            System.out.println("all one Index "+ allOne);
+
 
             Index index1 = new Index(0,0);
             Index index2 = new Index(1,1);
