@@ -27,6 +27,7 @@ public class DfsVisit<T> implements Serializable {
                  if (!finished.contains(reachableNode) &&
                  !workingStack.contains(reachableNode)){
                      workingStack.push(reachableNode);
+                     //ted
                  }
              }
         }
