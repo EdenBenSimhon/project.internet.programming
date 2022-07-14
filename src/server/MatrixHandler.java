@@ -3,10 +3,7 @@ package server;
 import server.IHandler;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  *  This class handles Matrix-related tasks
@@ -15,6 +12,7 @@ import java.util.Set;
 public class MatrixHandler implements IHandler {
     private Matrix matrix;
     private Index sourceIndex;
+    private Index destinationIndex;
     private boolean doWork;
 
 
@@ -41,11 +39,11 @@ public class MatrixHandler implements IHandler {
                 this.matrix.printMatrix();
                 break;
             }
-                case "find all ones":{
+                case "find all ones":{ //first mission
                     if(this.matrix!=null) {
-                        List<Index> allIndexOneList =
+                        Collection<Index> allIndexOneList =
                                 new ArrayList<>(this.matrix.getAllOne());
-                        System.out.println(allIndexOneList);
+                        System.out.println("get all one =" +allIndexOneList);
                         objectOutputStream.writeObject(allIndexOneList);
                     }
                     break;
@@ -57,7 +55,7 @@ public class MatrixHandler implements IHandler {
                 if (this.matrix!=null){
                     List<Index> neighbors =
                             new ArrayList<>(this.matrix.getNeighbors(this.sourceIndex));
-                    System.out.println(neighbors);
+                    System.out.println("my neighbors of index (1,1) is " + neighbors);
                     objectOutputStream.writeObject(neighbors);
                 }
                 break;
@@ -65,11 +63,14 @@ public class MatrixHandler implements IHandler {
 
             case "connected component":{
                 this.sourceIndex = (Index)objectInputStream.readObject();
+                this.destinationIndex= (Index)objectInputStream.readObject();
                 if (this.matrix!=null){
                     MatrixAsGraph matrixAsGraph = new MatrixAsGraph(this.matrix);
                     matrixAsGraph.setSource(this.sourceIndex);
+                    matrixAsGraph.setDestination(this.destinationIndex);
                     DfsVisit<Index> algorithm = new DfsVisit<>();
-                    Set<Index> connectedComponent = algorithm.traverse(matrixAsGraph);
+                    Set<Index> connectedComponent =
+                            algorithm.traverse(matrixAsGraph);
                     System.out.println(connectedComponent);
                     objectOutputStream.writeObject(connectedComponent);
                 }

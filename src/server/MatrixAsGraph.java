@@ -20,6 +20,12 @@ import java.util.List;
 public class MatrixAsGraph implements Graph<Index>, Serializable {
     private Matrix innerMatrix;
     private Index source;
+    private Index destination;
+
+
+
+
+
 
     public MatrixAsGraph(@NotNull Matrix matrix){
         this.innerMatrix = matrix;
@@ -44,8 +50,19 @@ public class MatrixAsGraph implements Graph<Index>, Serializable {
                 source.column < innerMatrix.primitiveMatrix[0].length)){
             this.source = source;
         }
-
     }
+    public Index getDestination() {
+        return destination;
+    }
+
+    public void setDestination(@NotNull Index destination) {
+        if((destination.row >=0 && destination.row<innerMatrix.primitiveMatrix.length)
+                && (destination.column >=0 &&
+                destination.column < innerMatrix.primitiveMatrix[0].length)){
+            this.destination = destination;
+        }
+    }
+
 
     @Override
     public Node<Index> getRoot() {

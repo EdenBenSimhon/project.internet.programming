@@ -7,9 +7,9 @@ import java.util.Set;
 public class Demo {
     public static void main(String[] args) {
         int[][] myArray = {
+                {1,0,0},
                 {1,1,0},
-                {0,1,1},
-                {0,1,1}
+                {1,1,0}
         };
 
         MatrixAsGraph matrixAsGraph = new MatrixAsGraph(new Matrix(myArray));

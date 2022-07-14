@@ -1,5 +1,7 @@
 package server;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -11,11 +13,11 @@ public class DfsVisit<T> implements Serializable {
     private Set<Node<T>> finished;
 
     public DfsVisit(){
-        workingStack = new Stack<>();
-        finished = new LinkedHashSet<>();
+        workingStack = new Stack<>(); //visited
+        finished = new LinkedHashSet<>();//queue
     }
 
-    public Set<T> traverse(Graph<T> aGraph){
+    public Set<T> traverse(@NotNull Graph<T> aGraph){
         workingStack.push(aGraph.getRoot());
         while (!workingStack.empty()){
             Node<T> removed = workingStack.pop();

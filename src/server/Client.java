@@ -43,10 +43,12 @@ public class Client {
             System.out.println("Neighbors of " + index2 + ": " + neighbors);
 
             toServer.writeObject("connected component");
-            toServer.writeObject(index1);
+            toServer.writeObject(index1); //source
+            toServer.writeObject(index2); //destination
 
             Set<Index> connectedComponent = new LinkedHashSet<Index>((Set<Index>)fromServer.readObject());
-            System.out.println("Connected Component of " + index1 + ": " + connectedComponent);
+            System.out.println("The shortest routes from " + index1 + " to "+ index2+" is :"+ connectedComponent);
+            toServer.writeObject("stop");
 
 
 
