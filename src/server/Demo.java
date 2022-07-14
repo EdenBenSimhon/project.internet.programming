@@ -15,8 +15,9 @@ public class Demo {
         MatrixAsGraph matrixAsGraph = new MatrixAsGraph(new Matrix(myArray));
         System.out.println(matrixAsGraph.getInnerMatrix());
         matrixAsGraph.setSource(new Index(0,0));
+        matrixAsGraph.setDestination(new Index(1,1));
         DfsVisit<Index> algorithm = new DfsVisit<>();
-        Set<Index> connectedComponent = algorithm.traverse(matrixAsGraph);
+        Set<Index> connectedComponent = algorithm.traverse(matrixAsGraph,matrixAsGraph.getSource(),matrixAsGraph.getDestination());
         System.out.println(connectedComponent);
 
 

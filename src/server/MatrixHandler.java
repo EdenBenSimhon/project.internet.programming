@@ -70,7 +70,7 @@ public class MatrixHandler implements IHandler {
                     matrixAsGraph.setDestination(this.destinationIndex);
                     DfsVisit<Index> algorithm = new DfsVisit<>();
                     Set<Index> connectedComponent =
-                            algorithm.traverse(matrixAsGraph);
+                            algorithm.traverse(matrixAsGraph,this.sourceIndex,this.destinationIndex);
                     System.out.println(connectedComponent);
                     objectOutputStream.writeObject(connectedComponent);
                 }

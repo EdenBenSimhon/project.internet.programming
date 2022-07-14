@@ -20,8 +20,8 @@ public class Client {
 
             int[][] sourceArray = {
                     {1,0,0},
-                    {1,0,1},
-                    {1,1,1}
+                    {1,1,0},
+                    {1,1,0}
             };
 
             toServer.writeObject("matrix");
@@ -34,7 +34,7 @@ public class Client {
 
 
             Index index1 = new Index(0,0);
-            Index index2 = new Index(1,1);
+            Index index2 = new Index(2,0);
 
             toServer.writeObject("get neighbors");
             toServer.writeObject(index2);

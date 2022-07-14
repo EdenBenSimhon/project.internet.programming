@@ -69,6 +69,9 @@ public class MatrixAsGraph implements Graph<Index>, Serializable {
         return new Node<>(source);
     }
 
+    @Override
+    public Node<Index> getDes() {return new Node<>(destination);}
+
     /**
      * A reachable node is a node that wraps a neighboring index whose value is equal to 1
      * @param aNode

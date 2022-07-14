@@ -7,6 +7,8 @@ import java.util.Collection;
  */
 public interface Graph<T> {
     public abstract Node<T> getRoot();
+    public abstract Node<T> getDes();
+
     /*
     Collections in Java:
     Lists
