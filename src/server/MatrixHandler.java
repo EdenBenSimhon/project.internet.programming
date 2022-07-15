@@ -1,7 +1,5 @@
 package server;
 
-import server.IHandler;
-
 import java.io.*;
 import java.util.*;
 
@@ -68,10 +66,13 @@ public class MatrixHandler implements IHandler {
                     MatrixAsGraph matrixAsGraph = new MatrixAsGraph(this.matrix);
                     matrixAsGraph.setSource(this.sourceIndex);
                     matrixAsGraph.setDestination(this.destinationIndex);
-                    DfsVisit<Index> algorithm = new DfsVisit<>();
-                    Set<Index> connectedComponent =
-                            algorithm.traverse(matrixAsGraph,this.sourceIndex,this.destinationIndex);
-                    System.out.println(connectedComponent);
+                    //DfsVisit<Index> algorithm = new DfsVisit<>();
+                    //Set<Index> connectedComponent =
+                      //      algorithm.traverse(matrixAsGraph,this.sourceIndex,this.destinationIndex);
+                    //System.out.println(connectedComponent);
+                    BfsVisit<Index> algorithm = new BfsVisit<>();
+                        Set<Set<Index>> connectedComponent =
+                                algorithm.traverse(matrixAsGraph,this.sourceIndex,this.destinationIndex);
                     objectOutputStream.writeObject(connectedComponent);
                 }
                 break;

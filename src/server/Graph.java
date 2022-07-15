@@ -8,6 +8,7 @@ import java.util.Collection;
 public interface Graph<T> {
     public abstract Node<T> getRoot();
     public abstract Node<T> getDes();
+    public abstract int sumOfVertex();
 
     /*
     Collections in Java:

@@ -72,6 +72,19 @@ public class MatrixAsGraph implements Graph<Index>, Serializable {
     @Override
     public Node<Index> getDes() {return new Node<>(destination);}
 
+    @Override
+    public int sumOfVertex() {
+        int row = innerMatrix.primitiveMatrix.length;
+        int col = innerMatrix.primitiveMatrix[0].length;
+        int size = 0;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                size++;
+            }
+        }
+        return size;
+    }
+
     /**
      * A reachable node is a node that wraps a neighboring index whose value is equal to 1
      * @param aNode
