@@ -1,5 +1,6 @@
 package server;
 
+import jdk.dynalink.NoSuchDynamicMethodException;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
@@ -43,29 +44,29 @@ public class BfsVisit<T> implements Serializable {
 
             }
         }
-        Set<T> blackSet = new LinkedHashSet<>();//need return Set<Set<T>>
-        Set<Set<T>> shortestPaths = new LinkedHashSet<Set<T>>();
+        Set<Set<T>> shortestPaths = new LinkedHashSet<>();
         int counter=0;
+        boolean isAdd = false;
         int min =aGraph.sumOfVertex();
-        System.out.println("min"+min);
-        blackSet.clear();
+        Set<T> blackSet = new LinkedHashSet<>();
 
         for (Set<Node<T>> path:allPath) {
-            blackSet.clear();
             for (Node<T> node:path) {
                 blackSet.add(node.getData());
                 counter++;
             }
-            System.out.println("\n blackset" + blackSet);
             if(counter <= min){
                 min=counter;
-                shortestPaths.add(blackSet);
-                System.out.println("The"+shortestPaths);
                 counter=0;
+                System.out.println("BlackSet:" +blackSet);
+
+                shortestPaths.add(new LinkedHashSet<T>((Collection<? extends T>) blackSet));
+                System.out.println("short path:" +shortestPaths);
+
+                blackSet.clear();
             }
             blackSet.clear();
         }
-        System.out.println("***************"+shortestPaths+"***************");
         return shortestPaths;
     }
     public boolean isNotVisited(Node<T> node, Set<Node<T>> path){
@@ -75,16 +76,6 @@ public class BfsVisit<T> implements Serializable {
         }
         return true;
     }
- /*   public Set<Set<T>> clearThePaths (Set<Set<Node<T>>> lists){
-        Set<Set<T>> blackSet = new LinkedHashSet<>();
-        int counter = lists.iterator().next().size();
-        for (Set<Node<T>> list:lists) {
-            blackSet.add((list);
-        }
 
-        return lists;
-    }
-
-*/
 
 }
