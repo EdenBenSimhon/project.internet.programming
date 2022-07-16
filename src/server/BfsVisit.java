@@ -46,10 +46,8 @@ public class BfsVisit<T> implements Serializable {
         }
         Set<Set<T>> shortestPaths = new LinkedHashSet<>();
         int counter=0;
-        boolean isAdd = false;
         int min =aGraph.sumOfVertex();
         Set<T> blackSet = new LinkedHashSet<>();
-
         for (Set<Node<T>> path:allPath) {
             for (Node<T> node:path) {
                 blackSet.add(node.getData());
@@ -58,15 +56,11 @@ public class BfsVisit<T> implements Serializable {
             if(counter <= min){
                 min=counter;
                 counter=0;
-                System.out.println("BlackSet:" +blackSet);
-
                 shortestPaths.add(new LinkedHashSet<T>((Collection<? extends T>) blackSet));
-                System.out.println("short path:" +shortestPaths);
-
-                blackSet.clear();
             }
             blackSet.clear();
         }
+        System.out.println("The shortest paths is :" +shortestPaths);
         return shortestPaths;
     }
     public boolean isNotVisited(Node<T> node, Set<Node<T>> path){
