@@ -7,4 +7,5 @@ import java.io.OutputStream;
 public interface IHandler {
     public abstract void handleClient(InputStream fromClient,
                                       OutputStream toClient) throws IOException, ClassNotFoundException;
+    //s
 }
