@@ -19,9 +19,9 @@ public class Client {
             ObjectInputStream fromServer = new ObjectInputStream(clientSocket.getInputStream());
 
             int[][] sourceArray = {
-                    {1,0,0},
-                    {1,1,0},
-                    {1,1,0}
+                    {1,0,0,1,1},
+                    {1,1,1,1,1},
+                    {1,0,0,1,1}
             };
 
             toServer.writeObject("matrix");
@@ -48,10 +48,24 @@ public class Client {
 
             Set<Set<Index>> connectedComponent = new LinkedHashSet<Set<Index>>((Set<Set<Index>>)fromServer.readObject());
             System.out.print("The shortest routes from " + index1 + " to "+ index2+" is :" +connectedComponent);
+
+            toServer.writeObject("submarine game");
+            Set<Set<Index>> submarines = new LinkedHashSet<Set<Index>>((Set<Set<Index>>)fromServer.readObject());
+            System.out.println("\nsubmarine:"+submarines + ", The size is : "+ submarines.size());
+            //need check location and if have one Index
+
+            int[][] sourceArray1 = {
+                    {100,100,100},
+                    {1000,500,300},
+                    {500,100,10}
+            };
+            toServer.writeObject("matrix");
+            toServer.writeObject(sourceArray1);
+            toServer.writeObject("weight");
+
+            Set<Set<Index>> lowestWeight = new LinkedHashSet<Set<Index>>((Set<Set<Index>>)fromServer.readObject());
+            System.out.print("\nThe weightiest routes from " + index1 + " to "+ index2+" is :" +lowestWeight);
             toServer.writeObject("stop");
-
-
-
 
         } catch (IOException ioException) {
             ioException.printStackTrace();
