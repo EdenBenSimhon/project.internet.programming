@@ -1,4 +1,4 @@
-package server;
+package struct;
 
 import java.util.Collection;
 

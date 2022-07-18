@@ -1,10 +1,8 @@
-package server;
+package struct;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

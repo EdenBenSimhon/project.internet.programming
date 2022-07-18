@@ -3,10 +3,9 @@ package handler;
 import algorithm.BfsVisit;
 import algorithm.BfsVisitWeight;
 import algorithm.DfsVisit;
-import handler.IHandler;
-import server.Index;
-import server.Matrix;
-import server.MatrixAsGraph;
+import struct.Index;
+import struct.Matrix;
+import struct.MatrixAsGraph;
 
 import java.io.*;
 import java.util.*;

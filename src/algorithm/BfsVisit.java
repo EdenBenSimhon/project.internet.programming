@@ -1,9 +1,8 @@
 package algorithm;
 
-import jdk.dynalink.NoSuchDynamicMethodException;
 import org.jetbrains.annotations.NotNull;
-import server.Graph;
-import server.Node;
+import struct.Graph;
+import struct.Node;
 
 import java.io.Serializable;
 import java.util.*;

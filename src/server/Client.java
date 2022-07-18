@@ -1,5 +1,7 @@
 package server;
 
+import struct.Index;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
