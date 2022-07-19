@@ -94,13 +94,8 @@ public class Client2 {
                         toServer.writeObject("stop");
                         break;
                     }
-
-
                 }
             }
-
-
-
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }

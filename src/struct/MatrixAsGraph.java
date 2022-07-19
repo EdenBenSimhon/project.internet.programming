@@ -27,7 +27,6 @@ public class MatrixAsGraph implements Graph<Index>, Serializable {
         this.innerMatrix = matrix;
     }
 
-
     public MatrixAsGraph() {
         this.innerMatrix = new Matrix(3, 3);
         source = new Index(0, 0);

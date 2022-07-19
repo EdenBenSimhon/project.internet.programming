@@ -94,8 +94,6 @@ public class Client1 {
                         toServer.writeObject("stop");
                         break;
                     }
-
-
                 }
             }
 

@@ -71,5 +71,4 @@ public class BfsVisit<T> implements Serializable {
         return true;
     }
 
-
 }

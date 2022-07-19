@@ -15,7 +15,6 @@ public class DfsVisit<T> {
         workingStack = new Stack<>();
         finished = new LinkedHashSet<>();
     }
-
     public Set<T> traverse(Graph<T> aGraph){
         workingStack.push(aGraph.getRoot());
         while (!workingStack.empty()){

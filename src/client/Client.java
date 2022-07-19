@@ -13,13 +13,9 @@ public class Client {
         try {
             Socket clientSocket = new Socket("127.0.0.1",8010);
             System.out.println("Socket created");
-
             ObjectOutputStream toServer = new ObjectOutputStream(clientSocket.getOutputStream());
             ObjectInputStream fromServer = new ObjectInputStream(clientSocket.getInputStream());
             boolean doWork = true;
-
-            //System.in is a standard input stream
-
             while (doWork){
                 System.out.print("\nPlease enter the task:\n" +
                         "1. Find all the ones in the matrix (write: find all ones)\n" +
@@ -94,12 +90,8 @@ public class Client {
                         toServer.writeObject("stop");
                         break;
                     }
-
-
                 }
             }
-
-
 
         } catch (IOException ioException) {
             ioException.printStackTrace();

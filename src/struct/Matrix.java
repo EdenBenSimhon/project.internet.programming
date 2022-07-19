@@ -150,14 +150,4 @@ public class Matrix implements Serializable {
         return primitiveMatrix;
     }
 
-    public static void main(String[] args) {
-        Matrix matrix = new Matrix(3,3);
-        System.out.println(matrix);
-        Index index1 = new Index(0,0);
-        Index index2 = new Index(1,1);
-        System.out.println(matrix.getNeighborsCross(index1));
-        System.out.println(matrix.getNeighborsCross(index2));
-
-    }
-
 }
