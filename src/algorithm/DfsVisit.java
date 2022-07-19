@@ -1,6 +1,8 @@
 package algorithm;
 
 import struct.Graph;
+import struct.Index;
+import struct.Matrix;
 import struct.Node;
 
 import java.util.*;
@@ -33,6 +35,39 @@ public class DfsVisit<T> {
         finished.clear();
         return blackSet;
     }
+    public boolean checkIfSubmarine (Set<Index> path) {
+        int sizeOfRow = 0;
+        int sizeOfCol = 0;
+        int maxRow = 0;
+        int minRow = 1000000;
+        int maxCol = 0;
+        int minCol = 1000000;
+        for (Index index : path) {
+            int tempRow = index.getSizeOfRow();
+            int tempCol = index.getSizeOfCol();
+            if (tempRow > maxRow) {
+                maxRow = tempRow;
+            }
+            if (tempRow < minRow) {
+                minRow = tempRow;
+            }
+            if (tempCol > maxCol) {
+                maxCol = tempCol;
+            }
+            if (tempCol < minCol) {
+                minCol = tempCol;
+            }
+        }
+        sizeOfRow = maxRow - minRow + 1;
+        sizeOfCol = maxCol - minCol + 1;
+        if ((path.size() == sizeOfRow * sizeOfCol)) {
+            return true;
+        }
+
+        return false;
+
+    }
+
 
 
 

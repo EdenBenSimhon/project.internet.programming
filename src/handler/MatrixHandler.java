@@ -64,7 +64,7 @@ public class MatrixHandler implements IHandler {
                     }
                     break;
                 }
-                case "connected component": {
+                case "The shortest path": {
                     this.sourceIndex = (Index) objectInputStream.readObject();
                     this.destinationIndex = (Index) objectInputStream.readObject();
                     if (this.matrix != null) {
@@ -100,20 +100,40 @@ public class MatrixHandler implements IHandler {
                     }
                     break;
                 }
-                case "submarine game": {
+                case "submarine": {
                     if (this.matrix != null) {
                         MatrixAsGraph matrixAsGraph = new MatrixAsGraph(this.matrix);
                         DfsVisit<Index> algorithm = new DfsVisit<>();
                         Collection<Index> allIndexOneList = new ArrayList<>(this.matrix.getAllOne());
-                        Set<Set<Index>> allSequencesOfOne = new LinkedHashSet<>();
+                        Set<Set<Index>> candidateBeSubmarine = new LinkedHashSet<>();
                         for (Index index : allIndexOneList) {
                             matrixAsGraph.setSource(index);
                             Set<Index> path = algorithm.traverse(matrixAsGraph);
-                            allSequencesOfOne.add(path);
+                            candidateBeSubmarine.add(path);
                         }
-                        System.out.println(allSequencesOfOne + " The amount of submarine is : " +
-                                allSequencesOfOne.size());
-                        objectOutputStream.writeObject(allSequencesOfOne);
+                        boolean isCorrect = true;
+                        for (Set<Index> path:candidateBeSubmarine) {
+                            System.out.println(algorithm.checkIfSubmarine(path));
+                            if(!algorithm.checkIfSubmarine(path) || path.size() == 1){
+
+                               isCorrect= false;
+                               candidateBeSubmarine.removeAll(path);
+                            }
+                        }
+                        if ((isCorrect==true)){
+                            System.out.println(candidateBeSubmarine + " The amount of submarine is : " +
+                                    candidateBeSubmarine.size());
+                            objectOutputStream.writeObject(candidateBeSubmarine);
+
+                        }
+                        else {
+                            System.out.println("The input invalid");
+                            Set<Set<Index>> candidateBeSubmarine1 = new LinkedHashSet<>();
+
+                            objectOutputStream.writeObject(candidateBeSubmarine1);
+
+                            //objectOutputStream.writeObject("The input I=invalid");
+                        }
 
                     }
                     break;

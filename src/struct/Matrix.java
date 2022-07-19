@@ -137,6 +137,9 @@ public class Matrix implements Serializable {
     public int getValue(final Index index){
         return primitiveMatrix[index.row][index.column];
     }
+    public void setValue(final Index index,int data){
+         primitiveMatrix[index.row][index.column]=data;
+    }
     public void printMatrix(){
         for (int[] row : primitiveMatrix) {
             String s = Arrays.toString(row);
@@ -146,6 +149,7 @@ public class Matrix implements Serializable {
     public final int[][] getPrimitiveMatrix() {
         return primitiveMatrix;
     }
+
     public static void main(String[] args) {
         Matrix matrix = new Matrix(3,3);
         System.out.println(matrix);

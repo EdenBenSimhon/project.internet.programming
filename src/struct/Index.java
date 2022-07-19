@@ -37,4 +37,10 @@ public class Index implements Serializable {
         Index index = new Index(2,3);
         System.out.println(index);
     }
+    public int getSizeOfRow(){
+        return this.row;
+    }
+    public int getSizeOfCol(){
+        return this.column;
+    }
 }
