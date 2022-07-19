@@ -48,7 +48,7 @@ public class MatrixHandler implements IHandler {
                     if (this.matrix != null) {
                         Collection<Index> allIndexOneList =
                                 new ArrayList<>(this.matrix.getAllOne());
-                        System.out.println("get all one =" + allIndexOneList);
+                        //System.out.println("get all one =" + allIndexOneList);
                         objectOutputStream.writeObject(allIndexOneList);
                     }
                     break;
@@ -89,10 +89,6 @@ public class MatrixHandler implements IHandler {
                         MatrixAsGraph matrixAsGraph = new MatrixAsGraph(this.matrix);
                         matrixAsGraph.setSource(this.sourceIndex);
                         matrixAsGraph.setDestination(this.destinationIndex);
-                        //DfsVisit<Index> algorithm = new DfsVisit<>();
-                        //Set<Index> connectedComponent =
-                        //      algorithm.traverse(matrixAsGraph,this.sourceIndex,this.destinationIndex);
-                        //System.out.println(connectedComponent);
                         BfsVisitWeight<Index> algorithm = new BfsVisitWeight<>();
                         Set<Set<Index>> lowestWeight =
                                 algorithm.traverse(matrixAsGraph, this.sourceIndex, this.destinationIndex);
@@ -113,7 +109,6 @@ public class MatrixHandler implements IHandler {
                         }
                         boolean isCorrect = true;
                         for (Set<Index> path:candidateBeSubmarine) {
-                            System.out.println(algorithm.checkIfSubmarine(path));
                             if(!algorithm.checkIfSubmarine(path) || path.size() == 1){
 
                                isCorrect= false;
@@ -121,18 +116,12 @@ public class MatrixHandler implements IHandler {
                             }
                         }
                         if ((isCorrect==true)){
-                            System.out.println(candidateBeSubmarine + " The amount of submarine is : " +
-                                    candidateBeSubmarine.size());
                             objectOutputStream.writeObject(candidateBeSubmarine);
 
                         }
                         else {
-                            System.out.println("The input invalid");
                             Set<Set<Index>> candidateBeSubmarine1 = new LinkedHashSet<>();
-
                             objectOutputStream.writeObject(candidateBeSubmarine1);
-
-                            //objectOutputStream.writeObject("The input I=invalid");
                         }
 
                     }
@@ -142,11 +131,7 @@ public class MatrixHandler implements IHandler {
                     doWork = false;
                     break;
                 }
-
             }
-
-
         }
-
     }
 }
