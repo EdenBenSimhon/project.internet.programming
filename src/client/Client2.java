@@ -8,7 +8,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.*;
 
-public class Client1 {
+public class Client2 {
     public static void main(String[] args) throws ClassNotFoundException {
         try {
             Socket clientSocket = new Socket("127.0.0.1",8010);
@@ -31,9 +31,9 @@ public class Client1 {
                 String input= sc.nextLine();              //reads string
                 System.out.println("\nYour choice is:" + input);
                 int[][] sourceArray = {
-                        {1,1,0,1,1},
-                        {0,0,0,1,1},
-                        {1,1,0,1,1}
+                        {1,0,0,1,1},
+                        {1,0,0,1,1},
+                        {1,0,0,1,1}
                 };
                 toServer.writeObject("matrix");
                 toServer.writeObject(sourceArray);
