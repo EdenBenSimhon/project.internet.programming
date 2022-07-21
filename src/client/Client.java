@@ -1,6 +1,6 @@
 package client;
 
-import struct.Index;
+import model.Index;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -8,7 +8,11 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.*;
 
+/**
+ * The class create client socket and send request to InternetServer
+ */
 public class Client {
+
     public static void main(String[] args) throws ClassNotFoundException {
         try {
             Socket clientSocket = new Socket("127.0.0.1",8010);

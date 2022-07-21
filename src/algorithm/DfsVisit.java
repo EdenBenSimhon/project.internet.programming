@@ -1,20 +1,31 @@
 package algorithm;
 
-import struct.Graph;
-import struct.Index;
-import struct.Matrix;
-import struct.Node;
+import model.Graph;
+import model.Index;
+import model.Node;
 
 import java.util.*;
 
+/** The class is dfs algorithm
+ * @param <T>
+ */
 public class DfsVisit<T> {
     private Stack<Node<T>> workingStack;
     private Set<Node<T>> finished;
 
+    /**
+     * constructor
+     */
     public DfsVisit(){
         workingStack = new Stack<>();
         finished = new LinkedHashSet<>();
     }
+
+    /**
+     *This method find the longest path
+     * @param aGraph
+     * @return
+     */
     public Set<T> traverse(Graph<T> aGraph){
         workingStack.push(aGraph.getRoot());
         while (!workingStack.empty()){
@@ -34,6 +45,12 @@ public class DfsVisit<T> {
         finished.clear();
         return blackSet;
     }
+
+    /**
+     * The method check if the path is submarine using algorithm for finding sub-matrices
+     * @param path
+     * @return boolean true/false
+     */
     public boolean checkIfSubmarine (Set<Index> path) {
         int sizeOfRow = 0;
         int sizeOfCol = 0;

@@ -1,5 +1,6 @@
 package server;
 
+
 import handler.IHandler;
 import handler.MatrixHandler;
 
@@ -10,6 +11,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This class create internet Server
+ */
 public class InternetServer {
 
     private final int port;
@@ -18,6 +22,10 @@ public class InternetServer {
 
     private IHandler requestHandler;
 
+    /**
+     * constructor with port
+     * @param port
+     */
     public InternetServer(int port){
         this.port = port;
         this.clientsPool = null;
@@ -25,9 +33,18 @@ public class InternetServer {
         this.stopServer = false; // if server should handle clients' requests
     }
 
+    /**
+     * this method gets a concrete handler, initializes a thread pool and handles each client
+     * concurrent
+     * @param concreteHandler
+     */
     public void supportClients(IHandler concreteHandler){
         this.requestHandler = concreteHandler;
 
+        /**
+         * no matter if handle 1 client or multiple clients , once a server has several operations
+         * at the same time , we ought to define different executable paths (threads)
+         */
         Runnable clientHandling = ()->{
             this.clientsPool =
                     new ThreadPoolExecutor(
@@ -67,6 +84,9 @@ public class InternetServer {
         new Thread(clientHandling).start();
     }
 
+    /**
+     * stop the connection between specification client (thread) to server
+     */
     public void stop(){
         if (!stopServer){
             stopServer = true;

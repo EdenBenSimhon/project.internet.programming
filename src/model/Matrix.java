@@ -1,12 +1,10 @@
-package struct;
+package model;
 
 import java.io.Serializable;
 import java.util.*;
 
-/*
-SOLID
-Open for extension/composition but closed for modification
-Prefer composition to extension
+/**
+ * Matrix model build by int[][]
  */
 public class Matrix implements Serializable {
     int[][] primitiveMatrix;

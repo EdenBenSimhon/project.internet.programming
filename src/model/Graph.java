@@ -1,4 +1,4 @@
-package struct;
+package model;
 
 import java.util.Collection;
 

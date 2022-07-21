@@ -3,16 +3,16 @@ package handler;
 import algorithm.BfsVisit;
 import algorithm.BfsVisitWeight;
 import algorithm.DfsVisit;
-import struct.Index;
-import struct.Matrix;
-import struct.MatrixAsGraph;
+import model.Index;
+import model.Matrix;
+import model.MatrixAsGraph;
 
 import java.io.*;
 import java.util.*;
 
 /**
- *  This class handles Matrix-related tasks
- * Adapts the functionality  of IHandler to a Matrix object
+ * This class handles Matrix-related tasks
+ *  Adapts the functionality  of IHandler to a Matrix object
  */
 public class MatrixHandler implements IHandler {
     private Matrix matrix;
@@ -20,15 +20,19 @@ public class MatrixHandler implements IHandler {
     private Index destinationIndex;
     private boolean doWork;
 
-
+    /**
+     * data is sent eventually as bytes
+     * read data as bytes then transform to meaningful data
+     * ObjectInputStream and ObjectOutputStream can read and write both primitives
+     * and Reference types
+     * @param fromClient
+     * @param toClient
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @Override
     public void handleClient(InputStream fromClient, OutputStream toClient) throws IOException, ClassNotFoundException {
-        /*
-        data is sent eventually as bytes
-        read data as bytes then transform to meaningful data
-        ObjectInputStream and ObjectOutputStream can read and write both primitives
-        and Reference types
-         */
+
         ObjectInputStream objectInputStream = new ObjectInputStream(fromClient);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(toClient);
 
@@ -48,7 +52,6 @@ public class MatrixHandler implements IHandler {
                     if (this.matrix != null) {
                         Collection<Index> allIndexOneList =
                                 new ArrayList<>(this.matrix.getAllOne());
-                        //System.out.println("get all one =" + allIndexOneList);
                         objectOutputStream.writeObject(allIndexOneList);
                     }
                     break;

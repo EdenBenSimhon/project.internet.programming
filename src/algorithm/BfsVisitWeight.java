@@ -1,23 +1,41 @@
 package algorithm;
 
 import org.jetbrains.annotations.NotNull;
-import struct.Graph;
-import struct.Node;
+import model.Graph;
+import model.Node;
 
 import java.io.Serializable;
 import java.util.*;
 
-public class BfsVisitWeight<T> implements Serializable {
+/** The class is bfs algorithm that find the lowest path
+ * @author Eden Ben Simhon
+ * @author Dan Yakobi
+ *
+ * @param <T>
+ */
+
+public class BfsVisitWeight<T> implements Serializable{
     private Queue<Set<Node<T>>> queue;
     private Set<Node<T>> path;
     private Set<Set<Node<T>>> allPath;
 
-
+    /**
+     * Constructor
+     */
     public BfsVisitWeight(){
         queue = new LinkedList<>(); //queue
         path = new LinkedHashSet<>();//paths
         allPath = new LinkedHashSet<>(); //visited
     }
+
+    /**
+     * This method find the all paths with the lowest weight from the source index to the destination index
+     * with bfs algorithm
+     * @param aGraph
+     * @param start
+     * @param end
+     * @return Set<Set<T>> lowestPaths
+     */
     public Set<Set<T>> traverse(@NotNull Graph<T> aGraph, T start, T end){
         path.clear();
         path.add(aGraph.getRoot());
@@ -44,7 +62,7 @@ public class BfsVisitWeight<T> implements Serializable {
 
             }
         }
-        Set<Set<T>> shortestPaths = new LinkedHashSet<>();
+        Set<Set<T>> lowestPaths = new LinkedHashSet<>();
         int tempSum = 0 ;
         int sum = findTheMinSum(aGraph,allPath);
         Set<T> blackSet = new LinkedHashSet<>();
@@ -54,16 +72,22 @@ public class BfsVisitWeight<T> implements Serializable {
                 tempSum += aGraph.getValueByIndex(node);
             }
             if(sum == tempSum) {
-                shortestPaths.add(new LinkedHashSet<T>((Collection<? extends T>) blackSet));
+                lowestPaths.add(new LinkedHashSet<T>((Collection<? extends T>) blackSet));
             }
             tempSum=0;
             blackSet.clear();
         }
-        System.out.println("The weightiest paths is :" + shortestPaths);
+        System.out.println("The weightiest paths is :" + lowestPaths);
 
-        return shortestPaths;
+        return lowestPaths;
     }
 
+    /**
+     *The method is part of the bfs algorithm ,check if the algorithm visit on this node
+     * @param node
+     * @param path
+     * @return boolean true/false
+     */
     public boolean isNotVisited(Node<T> node, Set<Node<T>> path){
         int size = path.size();
         if (path.contains(node)){
@@ -71,7 +95,13 @@ public class BfsVisitWeight<T> implements Serializable {
         }
         return true;
     }
-    //need change the function to find the min on matrix
+
+    /**
+     * The method find the minimum sum from all paths
+     * @param tGraph
+     * @param listSet
+     * @return sum
+     */
     public int findTheMinSum(Graph<T> tGraph , Set<Set<Node<T>>> listSet){
         int temp = 0;
         int sum = tGraph.getTotalSum();

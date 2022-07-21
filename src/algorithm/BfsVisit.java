@@ -1,23 +1,40 @@
 package algorithm;
 
 import org.jetbrains.annotations.NotNull;
-import struct.Graph;
-import struct.Node;
+import model.Graph;
+import model.Node;
 
 import java.io.Serializable;
 import java.util.*;
+
+/** The class is bfs algorithm that find the shortest path
+ * @author Eden Ben Simhon
+ * @author Dan Yakobi
+ *
+ * @param <T>
+ */
 
 public class BfsVisit<T> implements Serializable {
     private Queue<Set<Node<T>>> queue;
     private Set<Node<T>> path;
     private Set<Set<Node<T>>> allPath;
 
-
+    /**
+     *  Constructor
+     */
     public BfsVisit(){
         queue = new LinkedList<>(); //queue
         path = new LinkedHashSet<>();//paths
         allPath = new LinkedHashSet<>(); //visited
     }
+    /**
+     * This method find the all paths with the shortest path from the source index to the destination index
+     * with bfs algorithm
+     * @param aGraph
+     * @param start
+     * @param end
+     * @return Set<Set<T>> lowestPaths
+     */
     public Set<Set<T>> traverse(@NotNull Graph<T> aGraph, T start, T end){
         path.clear();
         path.add(aGraph.getRoot());
@@ -62,7 +79,12 @@ public class BfsVisit<T> implements Serializable {
         System.out.println("The shortest paths is :" +shortestPaths);
         return shortestPaths;
     }
-
+    /**
+     *The method is part of the bfs algorithm ,check if the algorithm visit on this node
+     * @param node
+     * @param path
+     * @return boolean true/false
+     */
     public boolean isNotVisited(Node<T> node, Set<Node<T>> path){
         int size = path.size();
             if (path.contains(node)){

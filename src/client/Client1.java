@@ -1,6 +1,6 @@
 package client;
 
-import struct.Index;
+import model.Index;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -8,6 +8,9 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.*;
 
+/**
+ * The class create client socket and send request to InternetServer
+ */
 public class Client1 {
     public static void main(String[] args) throws ClassNotFoundException {
         try {
@@ -28,7 +31,7 @@ public class Client1 {
                         "4. Finding the easiest route (write: weight)\n" +
                         "5. To disconnect from the server (write: stop)\n");
                 Scanner sc= new Scanner(System.in);
-                String input= sc.nextLine();              //reads string
+                String input= sc.nextLine();
                 System.out.println("\nYour choice is:" + input);
                 int[][] sourceArray = {
                         {1,1,0,1,1},
@@ -103,5 +106,4 @@ public class Client1 {
             ioException.printStackTrace();
         }
     }
-
 }

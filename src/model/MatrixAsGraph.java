@@ -1,5 +1,6 @@
-package struct;
+package model;
 
+import algorithm.DfsVisit;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
@@ -7,26 +8,27 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/*
-1 0 0
-1 1 1
-0 1 1
- */
 /**
  * This class uses the adapter pattern, also known as
  * wrapper/decorator/adapter.
  * It adapts a Matrix to the functionality of Graph Interface
  */
-public class MatrixAsGraph implements Graph<Index>, Serializable {
+public class MatrixAsGraph extends DfsVisit implements Graph<Index>, Serializable {
     private Matrix innerMatrix;
     private Index source;
     private Index destination;
 
-
+    /**
+     * Constructor
+     * @param matrix
+     */
     public MatrixAsGraph(@NotNull Matrix matrix) {
         this.innerMatrix = matrix;
     }
 
+    /**
+     * Constructor
+     */
     public MatrixAsGraph() {
         this.innerMatrix = new Matrix(3, 3);
         source = new Index(0, 0);
@@ -71,6 +73,9 @@ public class MatrixAsGraph implements Graph<Index>, Serializable {
         return new Node<>(destination);
     }
 
+    /**
+     * This method count the vertex
+     */
     @Override
     public int sumOfVertex() {
         int row = innerMatrix.primitiveMatrix.length;
@@ -85,10 +90,11 @@ public class MatrixAsGraph implements Graph<Index>, Serializable {
     }
 
     /**
-     * A reachable node is a node that wraps a neighboring index whose value is equal to 1
+     * A reachable node is a node that wraps a neighboring index whose value is equal to 1 ,
+     * move up , down , left ,right
      *
      * @param aNode
-     * @return
+     * @return Collection
      */
     @Override
     public Collection<Node<Index>> getReachableNodes(Node<Index> aNode) {
@@ -104,7 +110,13 @@ public class MatrixAsGraph implements Graph<Index>, Serializable {
         }
         return null;
     }
-
+    /**
+     * A reachable node is a node that wraps a neighboring index whose value is equal to 1 ,
+     * move : up , down , left ,right and cross
+     *
+     * @param aNode
+     * @return Collection
+     */
     public Collection<Node<Index>> getReachableNodesCross(Node<Index> aNode) {
         if (innerMatrix.getValue(aNode.getData()) == 1) {
             List<Node<Index>> reachableNodes = new ArrayList<>();
@@ -119,6 +131,13 @@ public class MatrixAsGraph implements Graph<Index>, Serializable {
         return null;
     }
 
+    /**
+     * A reachable node is a node that wraps a neighboring index whose value is equal to 1 ,
+     * move : cross
+     *
+     * @param aNode
+     * @return Collection
+     */
     public Collection<Node<Index>> getReachableNodesOnlyCross(Node<Index> aNode) {
         if (innerMatrix.getValue(aNode.getData()) == 1) {
             List<Node<Index>> reachableNodes = new ArrayList<>();
@@ -133,6 +152,13 @@ public class MatrixAsGraph implements Graph<Index>, Serializable {
         return null;
     }
 
+    /**
+     * An accessible node is a node that encloses a neighboring index and summarizes it
+     * * move : up , down , left ,right and cross
+     *
+     * @param aNode
+     * @return Collection
+     */
     public Collection<Node<Index>> getReachableNodesWeight(Node<Index> aNode) {
             List<Node<Index>> reachableNodes = new ArrayList<>();
             for (Index index : innerMatrix.getNeighborsCross(aNode.getData())) {
@@ -144,6 +170,10 @@ public class MatrixAsGraph implements Graph<Index>, Serializable {
 
     }
 
+    /**
+     * This method calculate the total sum of the matrix
+     * @return sum
+     */
     public int getTotalSum(){
         int sum = 0 ;
         int row = innerMatrix.primitiveMatrix.length;
@@ -157,6 +187,11 @@ public class MatrixAsGraph implements Graph<Index>, Serializable {
         return sum;
     }
 
+    /**
+     * This method check the value by the index
+     * @param aNode
+     * @return
+     */
     public int getValueByIndex (Node<Index> aNode){
         return innerMatrix.getValue(aNode.getData());
     }

@@ -1,8 +1,13 @@
-package struct;
+package model;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Node model is using to vertex in graph.
+ * template T
+ * @param <T>
+ */
 public class Node<T> implements Serializable {
     private static final Long serialVersionUID = 1L;
 

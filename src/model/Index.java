@@ -1,9 +1,11 @@
-package struct;
+package model;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-// POJO - Plain Old Java Object
+/**
+ * index model build by row and col
+ */
 public class Index implements Serializable {
     int row, column;
 
@@ -35,7 +37,6 @@ public class Index implements Serializable {
     public int getSizeOfRow(){
         return this.row;
     }
-
     public int getSizeOfCol(){
         return this.column;
     }
