@@ -31,14 +31,14 @@ public class Client {
                 String input= sc.nextLine();              //reads string
                 System.out.println("\nYour choice is:" + input);
                 int[][] sourceArray = {
-                        {1,1,0,1,1},
-                        {1,0,0,1,1},
-                        {1,0,0,1,1}
+                        {1,1,0,0,0},
+                        {1,0,0,0,0},
+                        {1,0,0,0,0}
                 };
                 toServer.writeObject("matrix");
                 toServer.writeObject(sourceArray);
-                Index index1 = new Index(0,0);
-                Index index2 = new Index(2,0);
+                Index sourceIndex = new Index(0,0);
+                Index destinationIndex = new Index(2,2);
                 switch (input) {
                     case "find all ones": {
                         toServer.writeObject("find all ones");
@@ -50,11 +50,12 @@ public class Client {
                     }
                     case "The shortest path": {
                         toServer.writeObject("The shortest path");
-                        toServer.writeObject(index1); //source
-                        toServer.writeObject(index2); //destination
+                        toServer.writeObject(sourceIndex); //source
+                        toServer.writeObject(destinationIndex); //destination
+                        toServer.writeObject(sourceArray);
                         Set<Set<Index>> connectedComponent = new LinkedHashSet<Set<Index>>((Set<Set<Index>>) fromServer.readObject());
                         System.out.println("########################");
-                        System.out.println("The shortest paths form: " + index1 + " to " + index2 + " is :" + connectedComponent);
+                        System.out.println("The shortest paths form: " + sourceIndex + " to " + destinationIndex + " is :" + connectedComponent);
                         System.out.println("########################");
                         break;
                     }
@@ -76,16 +77,17 @@ public class Client {
                     }
                     case "weight": {
                         int[][] sourceArray1 = {
-                                {100, 100, 100},
-                                {1000, 500, 300},
+                                {500, 100, 100},
+                                {1000, 0, 100},
                                 {500, 100, 10}
                         };
                         toServer.writeObject("matrix");
                         toServer.writeObject(sourceArray1);
                         toServer.writeObject("weight");
-
+                        toServer.writeObject(sourceIndex); //source
+                        toServer.writeObject(destinationIndex);
                         Set<Set<Index>> lowestWeight = new LinkedHashSet<Set<Index>>((Set<Set<Index>>) fromServer.readObject());
-                        System.out.print("\nThe weightiest paths from " + index1 + " to " + index2 + " is :" + lowestWeight);
+                        System.out.print("\nThe weightiest paths from " + sourceIndex + " to " + destinationIndex + " is :" + lowestWeight);
 
                         break;
                     }

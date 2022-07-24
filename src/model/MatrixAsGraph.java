@@ -42,7 +42,7 @@ public class MatrixAsGraph extends DfsVisit implements Graph<Index>, Serializabl
         return source;
     }
 
-    public void setSource(@NotNull Index source) {
+    public void setSource( Index source) {
         if ((source.row >= 0 && source.row < innerMatrix.primitiveMatrix.length)
                 && (source.column >= 0 &&
                 source.column < innerMatrix.primitiveMatrix[0].length)) {

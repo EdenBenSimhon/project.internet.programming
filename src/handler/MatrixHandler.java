@@ -70,6 +70,7 @@ public class MatrixHandler implements IHandler {
                 case "The shortest path": {
                     this.sourceIndex = (Index) objectInputStream.readObject();
                     this.destinationIndex = (Index) objectInputStream.readObject();
+
                     if (this.matrix != null) {
                         MatrixAsGraph matrixAsGraph = new MatrixAsGraph(this.matrix);
                         matrixAsGraph.setSource(this.sourceIndex);
@@ -86,8 +87,8 @@ public class MatrixHandler implements IHandler {
                     break;
                 }
                 case "weight":{
-                    //this.sourceIndex = (Index) objectInputStream.readObject();
-                    ///this.destinationIndex = (Index) objectInputStream.readObject();
+                    this.sourceIndex = (Index) objectInputStream.readObject();
+                    this.destinationIndex = (Index) objectInputStream.readObject();
                     if (this.matrix != null) {
                         MatrixAsGraph matrixAsGraph = new MatrixAsGraph(this.matrix);
                         matrixAsGraph.setSource(this.sourceIndex);
